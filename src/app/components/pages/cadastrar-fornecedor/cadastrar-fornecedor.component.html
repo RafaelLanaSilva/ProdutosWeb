@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="row mt-5">
+        <div class="col-md-4 offset-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h4>Cadastro de Fornecedores</h4>
+                        <p>Insira os dados para completar o cadastro</p>
+                        <hr />
+
+                        <div *ngIf="mensagem != ''" class="alert alert-success alert dismissble fade show" rolse="alert">
+                            <strong>{{ mensagem }}</strong>
+                            <button (click)="mensagem = ''" type="button" class="btn-close" aria-label="close"></button>
+                        </div>
+
+                    </div>
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label>Nome do fornecedor:</label>
+                            <input type="text" class="form-control" placeholder="Digite aqui" formControlName="nome" />
+                            <div class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+                                Por favor, informe o nome com pelo menos 8 caracteres.
+
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-3 d-grid">
+                            <input type="submit" class="btn btn-success" value="Realizar Cadastro"
+                                [disabled]="form.invalid" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
