@@ -1,0 +1,42 @@
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-body">
+            <h4>Edição de Fornecedores</h4>
+            <p>Preencha os campos para alterar os dados do fornecedor.</p>
+            <hr />
+
+            <!-- mensagem de sucesso -->
+            <div *ngIf="mensagemSucesso" class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Sucesso!</strong> {{ mensagemSucesso }}
+                <button (click)="mensagemSucesso = ''" type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+
+            <!-- mensagem de erro -->
+            <div *ngIf="mensagemErro" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Erro!</strong> {{ mensagemErro }}
+                <button (click)="mensagemErro = ''" type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label>Nome do fornecedor:</label>
+                        <input type="text" class="form-control" formControlName="nome" placeholder="Digite o nome aqui"/>
+                        <div class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+                            Por favor, informe o nome do cliente de 6 a 150 caracteres.
+                        </div>
+                    </div>                              
+                </div>
+    
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-primary" value="Salvar Alterações"
+                            [disabled]="form.invalid"/>
+                    </div>
+                </div>
+            </form>
+
+            
+        </div>
+    </div>
+</div>

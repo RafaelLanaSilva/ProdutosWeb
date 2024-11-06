@@ -1,76 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <div class="container mt-3">
-        <div class="card">
-          <div class="card-body">
-            <h4>Consulta de Fornecedores</h4>
-            <p>Listagem de fornecedores cadastrados.</p>
-            <hr />
-      
-      
-            <div
-              *ngIf="mensagem != ''"
-              class="alert alert-success alert-dismissible fade show"
-              role="alert"
-            >
-              <strong>{{ mensagem }}</strong>
-              <button
-                (click)="mensagem = ''"
-                type="button"
-                class="btn-close"
-                aria-label="Close"
-              ></button>
-            </div>
-      
-      
-            <div class="table-responsive">
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th>Nome do fornecedor</th>
-                    <th>Operações</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let c of suppliers">
-                    <td>{{ c.nome | uppercase }}</td>
-                    <td>
-                      <button class="btn btn-sm btn-outline-primary me-2"
-                        [routerLink]="['/pages/consultar-fornecedores', c.id]">
-                        Editar
-                      </button>
-                      <button (click)="onDelete(c.id)"
-                        class="btn btn-sm btn-outline-danger">
-                        Excluir
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="2">
-                      <strong>Quantidade de registros: {{ suppliers.length }}</strong>
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      
-      
-      
-      
-      
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-body">
+      <h4>Consulta de Fornecedores</h4>
+      <p>Listagem de fornecedores cadastrados.</p>
+      <hr />
 
-</body>
-</html>
+      <!-- mensagem de sucesso -->
+      <div *ngIf="mensagemSucesso" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Atenção!</strong> {{ mensagemSucesso }}
+        <button (click)="mensagemSucesso = ''" type="button" class="btn-close" aria-label="Close"></button>
+      </div>
+
+
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Fornecedor</th>
+              <th>Operações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of suppliers">
+              <td>{{ s.name | uppercase }}</td>
+              <td>
+                <button class="btn btn-sm btn-outline-primary me-2"
+                  [routerLink]="['/pages/editar-fornecedores', s.id]">
+                  Editar
+                </button>
+                <button (click)="onDelete(s.id)"
+                  class="btn btn-sm btn-outline-danger">
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2">
+                <strong>Quantidade de registros: {{ suppliers.length }}</strong>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

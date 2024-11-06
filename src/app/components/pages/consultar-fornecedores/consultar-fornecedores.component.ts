@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { environment } from '../../../../environments/environment.development';
+import { environment } from '../../../../environments/environment';
 import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-consultar-fornecedores',
@@ -11,8 +11,6 @@ import { RouterLink } from '@angular/router';
   imports: [
     CommonModule,
     RouterLink,
-    FormsModule,
-    ReactiveFormsModule
   ],
   templateUrl: './consultar-fornecedores.component.html',
   styleUrl: './consultar-fornecedores.component.css'
@@ -20,7 +18,7 @@ import { RouterLink } from '@angular/router';
 export class ConsultarFornecedoresComponent {
 
   suppliers: any[] = [];
-  mensagem: string = '';
+  mensagemSucesso: string = '';
 
   constructor(
     private httpClient: HttpClient
@@ -36,7 +34,7 @@ export class ConsultarFornecedoresComponent {
         error:(e) => {
           console.log(e.error);
         }
-    })
+    });
   }
 
   onDelete(id: string) {
@@ -44,10 +42,8 @@ export class ConsultarFornecedoresComponent {
       this.httpClient.delete(environment.apiProdutoseFornecedores + "/suppliers/" + id,)
         .subscribe({
           next: (data: any) => {
-            this.mensagem = `Fornecedor'${data.nome}', excluído com sucesso.`;            
-          },
-          error: (e) => {
-            console.log(e.error);
+            this.mensagemSucesso = `Fornecedor'${data.name}', excluído com sucesso.`; 
+            this.ngOnInit();                     
           }
         })
     }

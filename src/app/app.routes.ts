@@ -4,6 +4,8 @@ import { ConsultarProdutosComponent } from './components/pages/consultar-produto
 import { HomeComponent } from './components/pages/home/home.component';
 import { CadastrarProdutoComponent } from './components/pages/cadastrar-produto/cadastrar-produto.component';
 import { ConsultarFornecedoresComponent } from './components/pages/consultar-fornecedores/consultar-fornecedores.component';
+import { EditarFornecedoresComponent } from './components/pages/editar-fornecedores/editar-fornecedores.component';
+import { EditarProdutosComponent } from './components/pages/editar-produtos/editar-produtos.component';
 
 
 export const routes: Routes = [
@@ -22,6 +24,14 @@ export const routes: Routes = [
     {
         path: 'pages/consultar-fornecedores',
         component: ConsultarFornecedoresComponent
+    },
+    {
+        path: 'pages/editar-fornecedores/:id',
+        component: EditarFornecedoresComponent
+    },
+    {
+        path: 'pages/editar-produtos/:id',
+        component: EditarProdutosComponent
     },
     {
         path: 'pages/home',

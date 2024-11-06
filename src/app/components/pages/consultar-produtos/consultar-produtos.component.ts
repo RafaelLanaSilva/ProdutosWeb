@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 
 @Component({
@@ -11,9 +10,6 @@ import { environment } from '../../../../environments/environment.development';
   imports: [
     CommonModule,
     RouterLink,
-    RouterOutlet,
-    FormsModule,
-    ReactiveFormsModule
   ],
   templateUrl: './consultar-produtos.component.html',
   styleUrl: './consultar-produtos.component.css'

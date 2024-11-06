@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { HttpBackend, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { environment } from '../../../../environments/environment.development';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-cadastrar-fornecedor',
@@ -17,7 +17,8 @@ import { environment } from '../../../../environments/environment.development';
 })
 export class CadastrarFornecedorComponent {
 
-  mensagem: string = '';
+  mensagemSucesso: string = '';
+  mensagemErro: string = '';
 
     //método construtor para injeção de dependência
     constructor(
@@ -33,14 +34,19 @@ export class CadastrarFornecedorComponent {
     }
 
     onSubmit() {
-      this.httpClient.post(environment.apiProdutoseFornecedores + "/suppliers/create",
-        this.form.value).subscribe({
+
+      //limpar as mensagens
+      this.mensagemSucesso = '';
+      this.mensagemErro = '';
+
+      this.httpClient.post(environment.apiProdutoseFornecedores + "/suppliers/create", this.form.value)
+        .subscribe({
           next: (data: any) => {
-            this.mensagem = `Fornecedor'${data.nome}', cadastrado com sucesso.`;
-          this.form.reset();
+            this.mensagemSucesso = `Fornecedor'${data.name}', cadastrado com sucesso.`;
+            this.form.reset();
           },
           error: (e) => {
-            console.log(e.error);
+            this.mensagemErro = e.error.message;
           }
         })
       

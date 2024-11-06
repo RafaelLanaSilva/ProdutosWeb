@@ -1,76 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <div class="container mt-3">
-        <div class="card">
-          <div class="card-body">
-            <h4>Consulta de Produtos</h4>
-            <p>Listagem de produtos cadastrados.</p>
-            <hr />
-      
-      
-            <div
-              *ngIf="mensagem != ''"
-              class="alert alert-success alert-dismissible fade show"
-              role="alert"
-            >
-              <strong>{{ mensagem }}</strong>
-              <button
-                (click)="mensagem = ''"
-                type="button"
-                class="btn-close"
-                aria-label="Close"
-              ></button>
-            </div>
-      
-      
-            <div class="table-responsive">
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th>Nome do produto</th>                
-                    <th>Operações</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let c of products">
-                    <td>{{ c.nome | uppercase }}</td>
-                    <td>
-                      <button class="btn btn-sm btn-outline-primary me-2"
-                        [routerLink]="['/pages/consultar-produtos', c.id]">
-                        Editar
-                      </button>
-                      <button (click)="onDelete(c.id)"
-                        class="btn btn-sm btn-outline-danger">
-                        Excluir
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="2">
-                      <strong>Quantidade de registros: {{ products.length }}</strong>
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      
-      
-      
-      
-      
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-body">
+      <h4>Consulta de Produtos</h4>
+      <p>Listagem de produtos cadastrados.</p>
+      <hr />
 
-</body>
-</html>
+
+      <div
+        *ngIf="mensagem != ''"
+        class="alert alert-success alert-dismissible fade show"
+        role="alert"
+      >
+        <strong>{{ mensagem }}</strong>
+        <button
+          (click)="mensagem = ''"
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+        ></button>
+      </div>
+
+
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Nome do produto</th>
+              <th>Preço</th> 
+              <th>Quantidade em Estoque</th>
+              <th>Fornecedor</th>               
+              <th>Operações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of products">
+              <td>{{ c.name | uppercase }}</td>
+              <td>{{ c.price | currency:"BRL" }}</td>
+              <td>{{ c.quantity }}</td>
+              <td>{{ c.supplierId }}</td>
+              <td>
+                <button class="btn btn-sm btn-outline-primary me-2"
+                  [routerLink]="['/pages/editar-produtos', c.id]">
+                  Editar
+                </button>
+                <button (click)="onDelete(c.id)"
+                  class="btn btn-sm btn-outline-danger">
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2">
+                <strong>Quantidade de registros: {{ products.length }}</strong>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
